@@ -11,6 +11,8 @@ public class Tester {
 		if(hotels != null)
 		ir.readReviews("./inputFiles/reviews/",hotels);
 		System.out.println("========");
+		ir.readSemantics("./inputFiles/semantics/semantics.json");
+		System.out.println("========");
 	}
 
 }

@@ -1,13 +1,20 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonIOException;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import util.Hotel;
+import util.Sentiment;
+import util.Sentiment_Phrase;
 
 public class InputReader {
 
@@ -40,5 +47,25 @@ public class InputReader {
 			e.printStackTrace();
 		} 		
 	}
-	public void readSemantics(String path){}
+	public void readSemantics(String path){
+		
+		Gson gson = new Gson();
+		Sentiment s = null;
+		try {
+			s = gson.fromJson(new FileReader(path), Sentiment.class);
+System.out.println("-------------");
+			//Type type = new TypeToken<List<Sentiment_Phrase>>(){}.getType();
+			//List<Sentiment_Phrase> positives = new Gson().fromJson(json, type);
+			//JsonArray positives = parser.parse(new FileReader(path)).getAsJsonArray();
+		} catch (JsonIOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonSyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -47,16 +48,13 @@ public class InputReader {
 			e.printStackTrace();
 		} 		
 	}
-	public void readSemantics(String path){
+	public void readSemantics(String path,Sentiment s){
 		
 		Gson gson = new Gson();
-		Sentiment s = null;
+		
 		try {
 			s = gson.fromJson(new FileReader(path), Sentiment.class);
-System.out.println("-------------");
-			//Type type = new TypeToken<List<Sentiment_Phrase>>(){}.getType();
-			//List<Sentiment_Phrase> positives = new Gson().fromJson(json, type);
-			//JsonArray positives = parser.parse(new FileReader(path)).getAsJsonArray();
+            System.out.println("-------------");
 		} catch (JsonIOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,5 +65,12 @@ System.out.println("-------------");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public HashMap<String, String[]> createTopicMap(String path) {
+		HashMap<String, String[]> topics =new HashMap<String, String[]>();
+////String[]sleep ={"bed","sleep quality","mattresses","linens"};
+//topics.put("sleep", sleep);
+//String[]
+return topics;
 	}
 }

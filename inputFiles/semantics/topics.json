@@ -1,0 +1,8 @@
+bed: "bed","sleep quality","mattresses","linens";
+breakfast: "breakfast";
+food: "food", "dinner", "lunch", "snack";
+bathroom: "bathroom", "lavaratory", "shower", "toilet", "bath";
+restaurant: "restaurant", "cafe", "bar";
+pool: "pool","spa","wellness";
+bar: "bar";
+cosr: "price", "bill";

@@ -15,6 +15,7 @@ public class SentimentAnalyzer {
 	HashMap<String, String[]> topicMap;
 	SentimentAnalyzer()
 	{
+		s= new Sentiment();
 		hotels = new ArrayList<Hotel>();
 		topicMap = new HashMap<String, String[]>();
 	}
@@ -23,8 +24,7 @@ public class SentimentAnalyzer {
 		if(hotels != null)
 		ir.readReviews("./inputFiles/reviews/",hotels);
 		System.out.println("========");
-		s= new Sentiment();
-		ir.readSemantics("./inputFiles/semantics/semantics.json",s);
+		s=ir.readSemantics("./inputFiles/semantics/semantics.json");
 		topicMap = ir.createTopicMap("./inputFiles/semantics/topics.json");
 		System.out.println("========");
 		calculateSentenceValues();
@@ -42,7 +42,7 @@ public class SentimentAnalyzer {
 					{
 					  Sentence this_sentence=new Sentence(content.substring(start,end));
 					  this_sentence.setSentiment_value(calculateSenteceSentimentValue(this_sentence.getSentence()));
-					  review.getContent_senteces().add(this_sentence);
+					  (review.getContent_senteces()).add(this_sentence);
 					}
 				}
 			}

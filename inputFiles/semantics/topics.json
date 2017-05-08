@@ -1,8 +1,34 @@
-bed: "bed","sleep quality","mattresses","linens";
-breakfast: "breakfast";
-food: "food", "dinner", "lunch", "snack";
-bathroom: "bathroom", "lavaratory", "shower", "toilet", "bath";
-restaurant: "restaurant", "cafe", "bar";
-pool: "pool","spa","wellness";
-bar: "bar";
-cosr: "price", "bill";
+{"topics":
+[{
+			"category": "bed",
+			"words": "bed, sleep quality, mattresses, linens"
+		},
+		{
+			"category": "breakfast",
+			"words": "breakfast"
+		},
+		{
+			"category": "food",
+			"words": "food, dinner, lunch, snack"
+		},
+		{
+			"category": "bathroom",
+			"words": "bathroom, lavaratory, shower, toilet, bath"
+		},
+		{
+			"category": "restaurant",
+			"words": "restaurant, cafe, bar"
+		},
+		{
+			"category": "pool",
+			"words": "pool, spa, wellness"
+		},
+		{
+			"category": "bar",
+			"words": "bar"
+		},
+		{
+			"category": "cosr",
+			"words": "price, bill"
+		}
+	]}

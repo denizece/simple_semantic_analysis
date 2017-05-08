@@ -7,6 +7,9 @@ import java.util.Locale;
 import com.google.gson.annotations.SerializedName;
 
 public class Review {
+	public Review() {
+		content_senteces = new ArrayList<Sentence>();
+	}
 	@SerializedName("Ratings") private Rating rating;
 	@SerializedName("AuthorLocation") private String authorLocation;
 	@SerializedName("Title") private String title;

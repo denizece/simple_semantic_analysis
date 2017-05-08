@@ -4,11 +4,14 @@ import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -35,8 +38,7 @@ public class InputReader {
 			      } else if (listOfFiles[i].isDirectory()) {
 			        System.out.println("Directory " + listOfFiles[i].getName());
 			      }
-			    }
-			
+			    }			
 		} catch (JsonSyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,10 +50,10 @@ public class InputReader {
 			e.printStackTrace();
 		} 		
 	}
-	public void readSemantics(String path,Sentiment s){
+	public Sentiment readSemantics(String path){
 		
 		Gson gson = new Gson();
-		
+		Sentiment s = null;
 		try {
 			s = gson.fromJson(new FileReader(path), Sentiment.class);
             System.out.println("-------------");
@@ -65,12 +67,38 @@ public class InputReader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return s;
 	}
 	public HashMap<String, String[]> createTopicMap(String path) {
 		HashMap<String, String[]> topics =new HashMap<String, String[]>();
-////String[]sleep ={"bed","sleep quality","mattresses","linens"};
-//topics.put("sleep", sleep);
-//String[]
+		JsonParser parser = new JsonParser();
+		Object obj;
+		try {
+			obj = parser.parse(new FileReader(path));
+		
+
+		JsonObject jsonObject = (JsonObject) obj;
+
+	    JsonArray solutions = (JsonArray) jsonObject.get("topics");
+
+	    Iterator iterator = solutions.iterator();
+	    while (iterator.hasNext()) {
+	    	JsonObject topic = (JsonObject)iterator.next();
+	       String key = topic.get("category").getAsString();
+	       String wordStr = topic.get("words").getAsString();
+	       String[]words = wordStr.split(",");
+	       topics.put(key, words);  
+	        }
+		} catch (JsonIOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonSyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 return topics;
 	}
 }

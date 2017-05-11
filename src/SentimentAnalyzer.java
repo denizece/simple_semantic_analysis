@@ -28,6 +28,7 @@ public class SentimentAnalyzer {
 		topicMap = ir.createTopicMap("./inputFiles/semantics/topics.json");
 		System.out.println("========");
 		calculateSentenceValues();
+		System.out.println("========");
 	}
 	private void calculateSentenceValues() {
 		for (Hotel hotel : hotels) {
@@ -78,8 +79,34 @@ public class SentimentAnalyzer {
 		
 		return value;
 	}
-	private double calculateScoreForHotel(String topic)
+	
+	private boolean containsTopic(String topic,String sentence)
 	{
+		boolean contains = false;
+		String[]topic_words = topicMap.get(topic);
+		for (int i = 0; i < topic_words.length; i++) {
+			if(sentence.contains(topic_words[i]))
+			{
+				contains = true;
+				break;
+			}
+		}
+		return contains;
+	}
+	
+	private double calculateScoreForHotel(String topic,Hotel hotel)
+	{ 
+		double value = 0;
+		for(Review r: hotel.getReviews())
+		{
+			for(Sentence s: r.getContent_senteces())
+			{
+				if(s.getSentence().containsTopic(topic, s.getSentence()))
+				{
+					value +=s.getSentiment_value();
+				}
+			}
+		}
 		return 0;
 	}
 }
